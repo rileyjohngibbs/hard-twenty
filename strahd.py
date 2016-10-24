@@ -37,12 +37,12 @@ def gender_family_name(family_name, gender):
 	# No suffix marker or not modified for the gender
 	if not len(family_name_parsed) > 1 or gender[0] not in family_name_parsed[-1]:
 		return family_name_parsed[0]
-	suffix_instructions = re.findall(r"([%s])([a-z])?" % gender[0], family_name_parsed[-1])
+	suffix_instructions = re.findall(r"([%s])([a-z]*)" % gender[0], family_name_parsed[-1])
 	if not suffix_instructions:
 		raise Exception("Something went wrong trying to parse the suffix encoding \"%s\" for family name \"%s\"." % (family_name_parsed[-1], family_name))
 	return family_name_parsed[0] + suffix_instructions[0][1] + family_names[gender]
 
-def random_name(gender=None):
+def random_name(gender=None, first_name=None, family_name=None):
 	genders = ["female", "male"]
 	if not gender:
 		gender = pick_random(genders)
@@ -50,9 +50,11 @@ def random_name(gender=None):
 	if not gender in genders:
 		raise Exception("Gender \"%s\" is not valid. Expect one of: \"%s\"." % (gender, "\", \"".join(genders)))
 	# Pick first name
-	first_name = pick_random(first_names[gender])
+	if not first_name:
+		first_name = pick_random(first_names[gender])
 	# Pick family name
-	family_name = pick_random(family_names["base"])
+	if not family_name:
+		family_name = pick_random(family_names["base"])
 	gendered_family_name = gender_family_name(family_name, gender)
 	full_name = "%s %s, %s" % (first_name, gendered_family_name, gender)
 	return full_name
