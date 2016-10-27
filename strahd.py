@@ -1,4 +1,5 @@
 import random, re, sys
+import roll
 
 first_names = {
 	"female": [

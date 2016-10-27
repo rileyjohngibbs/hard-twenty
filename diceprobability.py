@@ -36,12 +36,23 @@ def sum_range(a, b):
 def mean_range(a, b):
 	return (a+b)*0.5
 
+def calculate_highest(num, die):
+	return [[x, (float(x)/die)**num - (float(x-1)/die)**num] for x in range(1,die+1)]
+
+def calculate_n_highest(num, die, values):
+	if len(values) > num:
+		raise Exception("The list of values is greater than the number of dice to be rolled.")
+	all_rolls = brute_drop(num, die, num-len(values))
+	positive_results = filter(lambda x: sorted(x)==sorted(values), all_rolls)
+	return float(len(positive_results))/len(all_rolls)
+
 def calculate_drop(num, die, drop):
 	bits = []
 	for k in range(1,die+1):
-		print (float(k)/die)**drop
+		#print (float(k)/die)**drop
 		bits.append( (float(k)/die)**drop * combination(3,2) * mean_range(k,die) * (num-drop) )
 	return sum(bits)
 
-print mean(brute_drop(3,4,2,True))
-print calculate_drop(3,4,2)
+print calculate_n_highest(4,6,[3,5])
+print calculate_n_highest(4,6,[5])
+print calculate_n_highest(4,6,[3,5])/calculate_n_highest(4,6,[5])
