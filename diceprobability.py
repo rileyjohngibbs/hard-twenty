@@ -1,4 +1,5 @@
 import math
+import time
 from pprint import pprint
 
 def generate_all_rolls(expression):
@@ -124,3 +125,19 @@ for n in range(3):
 	print '-'*10
 	print sum([x*calculate_n_highest_sum(3+n,6,n,x) for x in range(3,19)])
 	print '='*10
+
+num = 8
+die = 6
+drop_count = 2
+
+start_time = time.time()
+rolls = brute_drop(num, die, drop_count, True)
+for value in sorted(set(rolls)):
+	print value, float(rolls.count(value))/len(rolls)
+print time.time() - start_time
+print '='*10
+
+start_time = time.time()
+for x in range(num - drop_count, (num - drop_count) * die + 1):
+	print x, calculate_n_highest_sum(num, die, drop_count, x)
+print time.time() - start_time
