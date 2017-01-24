@@ -12,6 +12,8 @@
 			body {
 				font-family: "Philosopher";
 				font-size: 10pt;
+				width: 8.5in;
+				/*column-count: 2;*/
 			}
 			.desc {
 				display: inline-block;
@@ -47,11 +49,7 @@
 				text-decoration: underline;
 			}
 			p {
-				margin: 0.25em;
-			}
-			body {
-				width: 8.5in;
-				column-count: 2;
+				margin: 0.5em 0.25em;
 			}
 		</style>
 
@@ -63,107 +61,177 @@
 
 			<h1>Chaos Chamber</h1>
 
-			<h2>Level 1</h2>
+			<div class="level">
 
-			<div class="room">
+				<h2 style="column-span: all"><hr>Level 1</h2>
 
-				<h3>Dragon Lair's Enrance</h3>
-			
-				<p class="desc">
-					The air from the cave carries none of the usual subterranean cold, quiet stillness. Heat pours out, surrounds you, and beckons you inside. Twenty yards inside you see two narrower passages branching off the left and right. Beyond these two passages you can just make out in the darkness a large cavern chamber.
-				</p>
+				<div class="room">
+
+					<h3>Dragon Lair's Enrance</h3>
 				
-				<p>
-					A <span class="creature">chaos-infected red dragon wyrmling</span> attacks the PCs from behind. It does not attempt to hide its approach, and fights to the death.
-				</p>
+					<p class="desc">
+						The air from the cave carries none of the usual subterranean cold, quiet stillness. Heat pours out, surrounds you, and beckons you inside. Twenty yards inside you see two narrower passages branching off the left and right. Beyond these two passages you can just make out in the darkness a large cavern chamber.
+					</p>
+					
+					<!-- <p>
+						A <span class="creature">chaos-infected red dragon wyrmling</span> attacks the PCs from behind. It does not attempt to hide its approach, and fights to the death.
+					</p> -->
 
-			</div>
-			
-			<div class="room">
-
-				<h3>Servants Quarters</h3>
+				</div>
 				
-				<p class="desc">
-					A half-dozen simple but well-crafted beds and side tables rest around edges of this room. Strewn about the center lie the bodies of four humanoids in bright red commoner outfits. The side tables are all empty except one, upon which rests a bronze figurine of a prostrate man.
-				</p>
-				
-				<h4>Encounter</h4>
+				<div class="room">
 
-				<p>
-					The figurine is a <span class="item">healing figurine</span>, but it and the table are infested with chaotic energy. When reached for, the figurine blinks away to another spot on the table, evading capture. A Dexterity check (DC 13) is required to corner and obtain the figurine. Smashing the table releases a blast of chaotic energy similar to a <i>thunderwave</i> spell, dealing 2d10 damage (DC 13 Constitution save for half damage) to anyone in the room and destroying the figurine.
-				</p>
+					<h3>Servants Quarters</h3>
+					
+					<p class="desc">
+						A half-dozen simple but well-crafted beds and side tables rest around edges of this room. Strewn about the center lie the bodies of four humanoids in bright red commoner outfits. The side tables are all empty except one, upon which rests a bronze figurine of a prostrate man.
+					</p>
+					
+					<h4>Encounter</h4>
 
-				<h4>Treasure</h4>
+					<p>
+						The figurine is a <span class="item">healing figurine</span>, but it and the table are infested with chaotic energy. When reached for, the figurine blinks away to another spot on the table, evading capture. A Dexterity check (DC 13) is required to corner and obtain the figurine. Smashing the table releases a blast of chaotic energy similar to a <i>thunderwave</i> spell, dealing 2d10 damage (DC 13 Constitution save for half damage) to anyone in the room and destroying the figurine.
+					</p>
 
-				<p>
-					The <span class="item">healing figurine</span> can be used once to cast <i>prayer of healing</i> for 2d8+3 hit points.
-				</p>
+					<h4>Treasure</h4>
 
-			</div>
+					<p>
+						The <span class="item">healing figurine</span> can be used once to cast <i>prayer of healing</i> for 2d8+3 hit points.
+					</p>
 
-			<div class="room">
-
-				<h3>Pedestal Mechanism Room</h3>
-
-				<p class="desc">
-					This room is empty except for a three foot tall stone pedestal in the center. Arcane symbols cover the outside of the pedestal. There is a small hole, about an inch and a half in diameter, in the top of the pedestal.
-				</p>
-
-				<p>
-					The pedestal is a control mechanism for the stairway in the dragon's chamber in the back of the cave. Darius has the rod that fits inside the pedestal's hole, and that operates as a key to operate it. The symbols on the outside can be identified with a DC 13 Intelligence (arcana) check to be inert but related to warding and imprisonment.
-				</p>
-
-				<h4>Encounter</h4>
-
-				<p>
-					Four <span class="creature">darkmantles</span> cling to the ceiling and attack when the PCs are distracted investigating the pedestal.
-				</p>
-
-			</div>
-
-			<div class="room">
-
-				<h3>Dragon's Slumber</h3>
-
-				<p class="desc">
-					The most prominent feature in this large room at the back of the cave is the red dragon's corpse lying across the floor on the right side of the room. Much of the flesh of the dragon is gone, exposing its skeleton in several places. In the back left corner, a spiral staircase descends at a steep angle down into the floor.
-				</p>
-
-				<p>
-					Darius killed the adult dragon over a week ago. For the last three days, a <span class="creature">basilisk</span> has been feeding on the dragon's corpse. The basilisk is currently hiding in a niche that is hidden from view from most of the cavern except with a DC 15 Wisdom (perception) check. The entrance to the niche is easily visible from the dragon's corpse if the players walk over to inspect it. Inside the niche with the basilisk is the shortsword <span class="creature">Wick</span>.
-				</p>
-
-				<p>
-					The staircase can telescope up and down, controlled by the pedestal in the Pedestal Mechanism Room. It is currently down, descending twenty feet to the Chamber Atrium.
-				</p>
-
-				<h4>Encounter</h4>
-
-				<p>
-					A <span class="creature">basilisk</span> in the concealed side chamber attacks if the PCs come into the chamber. It is not visible except from just inside the entrance to the side chamber.
-				</p>
-
-				<h4>Treasure</h4>
-
-				<p>
-					<span class="item">Wick</span> can be activated once per day with a snap of the wielder's fingers to wreath this shortsword's blade in flames, dealing +1d6 fire damage on each hit for one minute.
-				</p>
-
-			</div>
-
-			<h2>Level 2</h2>
-
-			<div class="room">
-
-				<h3>Chamber Atrium</h3>
-
-				<div class="desc">
-					The staircase ends in an octagonal room. A short egress leads to a pair of double doors with fragments of jade set into the wood.
 				</div>
 
-				<p>
-					The staircase leads down into this room from the Dragon's Slumber.
-				</p>
+				<div class="room">
+
+					<h3>Pedestal Mechanism Room</h3>
+
+					<p class="desc">
+						This room is empty except for a three foot tall stone pedestal in the center. Arcane symbols cover the outside of the pedestal. There is a small hole, about an inch and a half in diameter, in the top of the pedestal.
+					</p>
+
+					<p>
+						The pedestal is a control mechanism for the stairway in the dragon's chamber in the back of the cave. Darius has the rod that fits inside the pedestal's hole, and that operates as a key to operate it. The symbols on the outside can be identified with a DC 13 Intelligence (arcana) check to be inert but related to warding and imprisonment.
+					</p>
+
+					<h4>Encounter</h4>
+
+					<p>
+						Four <span class="creature">darkmantles</span> cling to the ceiling and attack when the PCs are distracted investigating the pedestal.
+					</p>
+
+				</div>
+
+				<div class="room">
+
+					<h3>Dragon's Slumber</h3>
+
+					<p class="desc">
+						The most prominent feature in this large room at the back of the cave is the red dragon's corpse lying across the floor on the right side of the room. Much of the flesh of the dragon is gone, exposing its skeleton in several places. In the back left corner, a spiral staircase descends at a steep angle down into the floor.
+					</p>
+
+					<p>
+						Darius killed the adult dragon over a week ago. For the last three days, a <span class="creature">basilisk</span> has been feeding on the dragon's corpse. The basilisk is currently hiding in a niche that is hidden from view from most of the cavern except with a DC 15 Wisdom (perception) check. The entrance to the niche is easily visible from the dragon's corpse if the players walk over to inspect it. Inside the niche with the basilisk is the shortsword <span class="creature">Wick</span>.
+					</p>
+
+					<p>
+						The staircase can telescope up and down, controlled by the pedestal in the Pedestal Mechanism Room. It is currently down, descending twenty feet to the Chamber Atrium.
+					</p>
+
+					<h4>Encounter</h4>
+
+					<p>
+						A <span class="creature">basilisk</span> in the concealed side chamber attacks if the PCs come into the chamber. It is not visible except from just inside the entrance to the side chamber.
+					</p>
+
+					<h4>Treasure</h4>
+
+					<p>
+						<span class="item">Wick</span> can be activated once per day with a snap of the wielder's fingers to wreath this shortsword's blade in flames, dealing +1d6 fire damage on each hit for one minute.
+					</p>
+
+				</div>
+
+			</div>
+
+			<div class="level">
+
+				<h2 style="column-span: all"><hr>Level 2</h2>
+
+				<div class="room">
+
+					<h3>Chamber Atrium</h3>
+
+					<div class="desc">
+						The staircase ends in an octagonal room. A short egress leads to a pair of double doors with fragments of jade set into the wood.
+					</div>
+
+					<p>
+						The staircase leads down into this room from the Dragon's Slumber.
+					</p>
+
+				</div>
+
+				<div class="room">
+
+					<h3>Cracked Seal</h3>
+
+					<div class="desc">
+						In the center of this room sits a jade platform, just a few inches off the ground, in the shape of an octagon, ten feet wide. Arcane symbols, lingering with magical intent, are etched onto its surface. Three large cracks radiate from the center of the platform all the way out to its edges. Beyond the platform, there are two doors on the far side of the room.
+					</div>
+
+					<p>
+						The platform was once the central magical device of this chamber. A flaw in the jade weakened it over time, eventually causing it to crack open and release the energies freely inside the chamber beneath the dragon's lair.
+					</p>
+
+				</div>
+
+				<div class="room">
+
+					<h3>Endless Hallway</h3>
+
+					<div class="desc">
+						The hallway before you stretches sixty feet ahead, ending in a door with a greataxe mounted on the wall above it.
+					</div>
+
+					<p>
+						The hallway is distorted by powerful transmutation magic. Anything traveling eastward through the hall can only get about thirty feet from the western door before distortion of space makes further movement impossible, never getting any closer to the other side. PCs may experience nausea or vertigo as they try to make their way through the hall.
+					</p>
+
+					<p>
+						Any projectiles aimed toward the end of the hallway may seem visually to get farther away, but they never reach the other side, always falling short. When a PC retrieves such a projectile, the distance to it quickly closes and they may retrieve it as if it was only a yard ahead of them.
+					</p>
+
+					<p>
+						Teleportation magic may be used to reach the other end of the hallway, or the PCs may enter from the eastern door after going around, and from there may reach the greataxe above it. They can safely stand within five feet of the door without the transmutation magic affecting them.
+					</p>
+
+					<h4>Treasure</h4>
+
+					<p>
+						The greataxe is a <span class="item">greataxe of powerstrike</span>. It has three charges, that replenishing 1d3 at dawn every day. The wielder may expend a charge when it hits with the axe to add one extra damage die to the damage roll.
+					</p>
+
+				</div>
+
+				<div class="room">
+
+					<h3>Armory</h3>
+
+					<div class="desc">
+						This room is filled with empty armor and weapon racks, mixed among broken armaments. Half a dozen cats skitter around the room as you enter, looking for hiding places amongst the rubble. As they do, you notice that two of them, in their dashes, disappear mid-stride and reappear instantaneously a few feet ahead. There are two doors on the far wall. The one on the right is smaller than the other doors down here, like a door to a pantry or closet.
+					</div>
+
+					<p>
+						The cats in the room were infected with some of the chaotic energies. Three of them have pupils turned sideways, and one has a tail resembling that of a squid's tentacles.
+					</p>
+
+					<h4>Encounter</h4>
+
+					<p>
+						The room behind the smaller door holds two <span class="creature">chaos-infected red dragon wyrmlings</span>. They can be heard wrestling inside with a DC 10 Wisdom (perception) check from inside the armory.
+					</p>
+
+				</div>
 
 			</div>
 
