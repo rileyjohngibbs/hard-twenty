@@ -12,7 +12,7 @@
 			body {
 				font-family: "Philosopher";
 				font-size: 10pt;
-				width: 8.5in;
+				width: 8in;
 				/*column-count: 2;*/
 			}
 			.desc {
@@ -41,6 +41,9 @@
 				padding: 0.5em;
 				break-inside: avoid-column;
 			}
+			h2 {
+				column-span: all;
+			}
 			h3 {
 				margin: 0.25em;
 			}
@@ -50,6 +53,20 @@
 			}
 			p {
 				margin: 0.5em 0.25em;
+			}
+			@media print {
+				body {
+					column-count: 2;
+				}
+				h2 {
+					column-span: 1;
+				}
+				.level {
+					column-count: 1;
+				}
+				.room {
+					page-break-inside: avoid;
+				}
 			}
 		</style>
 
@@ -63,7 +80,7 @@
 
 			<div class="level">
 
-				<h2 style="column-span: all"><hr>Level 1</h2>
+				<h2><hr>Level 1</h2>
 
 				<div class="room">
 
@@ -155,7 +172,7 @@
 
 			<div class="level">
 
-				<h2 style="column-span: all"><hr>Level 2</h2>
+				<h2><hr>Level 2</h2>
 
 				<div class="room">
 
