@@ -1,33 +1,52 @@
 import unittest
 
 from compose import *
+from compose_oneline import compose as compose_oneline
 
-class ComposeTestCase(unittest.TestCase):
+class SimpleTestCase(unittest.TestCase):
 
-	def test_foo(self):
-		foo = compose(add, mult, square)
-		self.assertEqual(foo(4), 100)
+	def test_compose(self):
+		c = compose(add, mult, square)
+		self.assertEqual(144, c(5))
 
-	def test_bar(self):
-		bar = compose(add, add, square, mult)
-		self.assertEqual(bar(1), 18)
+	def test_oneline(self):
+		c = compose_oneline(add, mult, square)
+		self.assertEqual(144, c(5))
 
-	def test_string(self):
+class StringTestCase(unittest.TestCase):
+
+	def test_compose(self):
 		with self.assertRaises(TypeError):
-			foo = compose(add, square)
-			x = foo("hello")
+			c = compose(add, mult, square)
+			c("hello")
 
-	def test_non_func_composition(self):
+	def test_oneline(self):
 		with self.assertRaises(TypeError):
-			print "Running compose(add, 5)"
-			foo = compose(add, 5)
-			print "Trying to run the composition"
-			x = foo(7)
+			c = compose_oneline(add, mult, square)
+			c("hello")
 
-	def test_no_args(self):
+class NonFunctionTestCase(unittest.TestCase):
+
+	def test_compose(self):
+		with self.assertRaises(TypeError):
+			c = compose(add, 5)
+			c(5)
+
+	def test_oneline(self):
+		with self.assertRaises(TypeError):
+			c = compose_oneline(add, 5)
+			c(5)
+
+class NoArgsTestCase(unittest.TestCase):
+
+	def test_compose(self):
 		with self.assertRaises(IndexError):
-			foo = compose()
-			foo(5)
+			c = compose()
+			c(5)
+
+	def test_oneline(self):
+		c = compose_oneline()
+		self.assertEqual(5, c(5)) 
 
 if __name__ == '__main__':
 	unittest.main()
