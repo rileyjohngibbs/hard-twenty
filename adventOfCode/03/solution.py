@@ -25,6 +25,10 @@ shape = (
 )
 fabric = np.zeros(shape, int)
 
+
+# Part One
+
+
 for line in parsed_lines:
     fabric[
         line["y"]:line["y"] + line["height"],
@@ -32,3 +36,15 @@ for line in parsed_lines:
     ] += 1
 
 print(len(np.transpose((fabric > 1).nonzero())))
+
+
+# Part Two
+
+
+for line in parsed_lines:
+    rect = fabric[
+        line["y"]:line["y"] + line["height"],
+        line["x"]:line["x"] + line["width"]
+    ]
+    if len(np.transpose((rect > 1).nonzero())) == 0:
+        print(line["id"])
