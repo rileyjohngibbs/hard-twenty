@@ -61,3 +61,18 @@ sleepSchedules[sleepiestId].forEach((count, minute) => {
   }
 });
 console.log(parseInt(sleepiestId.match(/#(.*)/)[1]) * sleepiestMinute);
+
+// Part Two
+
+sleepiestCount = 0;
+
+for (guardId in sleepSchedules) {
+  for (minute in sleepSchedules[guardId]) {
+    if (sleepSchedules[guardId][minute] > sleepiestCount) {
+      sleepiestId = guardId;
+      sleepiestMinute = minute;
+      sleepiestCount = sleepSchedules[guardId][minute];
+    }
+  }
+}
+console.log(parseInt(sleepiestId.match(/#(.*)/)[1]) * sleepiestMinute);
