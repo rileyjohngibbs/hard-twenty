@@ -34,6 +34,18 @@ for line in lines:
             for count in sleep_schedules[guard_number][start_time:stop_time]
         ]
 
+
+# Part One
+
+
 sleepiest_id, minutes = max(sleep_schedules.items(), key=lambda s: sum(s[1]))
+sleepiest_minute = max(enumerate(minutes), key=lambda m: m[1])[0]
+print(sleepiest_id * sleepiest_minute)
+
+
+# Part Two
+
+
+sleepiest_id, minutes = max(sleep_schedules.items(), key=lambda s: max(s[1]))
 sleepiest_minute = max(enumerate(minutes), key=lambda m: m[1])[0]
 print(sleepiest_id * sleepiest_minute)
