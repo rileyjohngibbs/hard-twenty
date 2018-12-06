@@ -29,6 +29,8 @@ fabric.forEach((x, i) => {
   fabric[i] = new Array(width).fill(0);
 });
 
+// Part One
+
 parsedLines.forEach((line) => {
   for (let j = line.y; j < line.y + line.height; j++) {
     for (let i = line.x; i < line.x + line.width; i++) {
@@ -42,3 +44,13 @@ const overlaps = fabric.map((row) => {
 }).reduce((a, b) => a + b);
 
 console.log(overlaps);
+
+// Part Two
+
+const okay_lines = parsedLines.filter((line) => {
+  return fabric.slice(line.y, line.y + line.height).every((row) => {
+    return row.slice(line.x, line.x + line.width).every((inch) => inch < 2);
+  })
+});
+
+okay_lines.forEach((line) => {console.log(line.id);});
