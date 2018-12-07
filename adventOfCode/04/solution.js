@@ -10,9 +10,6 @@ var sleepSchedules = [];
 
 function parseTime(line) {
   const timeMatch = line.match(/([0-9]+):([0-9]+)/);
-  if (timeMatch === null) {
-    console.log(line);
-  }
   const hour = timeMatch[1], minute = timeMatch[2];
   if (hour == 23) {
     return 0;
