@@ -20,11 +20,17 @@ const tapestry = [...Array(max_y + 1).keys()].slice(min_y).map((y) => {
   return [...Array(max_x + 1).keys()].slice(min_x).map((x) => {return {x, y}});
 }).reduce((r, s) => r.concat(s));
 
+function manhattan(p, q) {
+  return Math.abs(p.x - q.x) + Math.abs(p.y - q.y);
+}
+
+// Part One
+
 tapestry.forEach((point) => {
   let closest_center = null;
   let shortest_distance = null;
   centers.forEach((center) => {
-    let distance = Math.abs(point.x - center.x) + Math.abs(point.y - center.y);
+    let distance = manhattan(point, center);
     if (distance < shortest_distance || shortest_distance === null) {
       shortest_distance = distance;
       closest_center = center;
@@ -49,3 +55,14 @@ biggest_center = centers.reduce((c, d) => {
 });
 
 console.log(biggest_center.area.length);
+
+// Part Two
+
+console.log(
+  tapestry.filter((point) => {
+    let total_distance = centers
+      .map((c) => manhattan(c, point))
+      .reduce((x, y) => x + y);
+    return total_distance < 10000;
+  }).length
+);
