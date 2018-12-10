@@ -13,4 +13,17 @@ console.log(total);
 
 // Part Two
 
+let frequencies = {};
 
+var currentFrequency = 0;
+var i = 0;
+
+while (frequencies[currentFrequency] === undefined) {
+  frequencies[currentFrequency] = true;
+  currentFrequency += lines[i++];
+  if (i === lines.length) {
+    i = 0;
+  }
+}
+
+console.log(currentFrequency);
