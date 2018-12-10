@@ -43,11 +43,16 @@ class Point(object):
             raise TypeError(f"{self.__cls__}.distance takes a Point or x, y")
 
     def closest_center(self, centers):
-        ordered = sorted(centers, key=self.distance)
-        if self.distance(ordered[0]) != self.distance(ordered[1]):
-            return ordered[0]
-        else:
-            return None
+        closest_center = centers[0]
+        shortest_distance = self.distance(centers[0])
+        for center in centers[1:]:
+            center_distance = self.distance(center)
+            if center_distance < shortest_distance:
+                shortest_distance = center_distance
+                closest_center = center
+            elif center_distance == shortest_distance:
+                closest_center = None
+        return closest_center
 
 
 class Center(Point):
@@ -71,6 +76,10 @@ tapestry = reduce(lambda x, y: x + y, [
     for y in range(min_y, max_y + 1)
 ])
 
+
+# Part One
+
+
 infinite_areas = set([])
 for point in tapestry:
     closest_center = point.closest_center(centers)
@@ -86,3 +95,13 @@ def not_infinite(center):
 
 biggest_center = max(filter(not_infinite, centers), key=lambda c: len(c.area))
 print(len(biggest_center.area))
+
+
+# Part Two
+
+
+def close_enough(point):
+    return sum(map(point.distance, centers)) < 10000
+
+
+print(len(list(filter(close_enough, tapestry))))
