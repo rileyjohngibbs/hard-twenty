@@ -1,4 +1,4 @@
-from functools import reduce
+from functools import partial, reduce
 import re
 
 
@@ -18,7 +18,7 @@ def main():
 def metadata_sum(tree_values):
     children_count, metadata_count = tree_values[:2]
     position, total = reduce(
-        lambda a, b: [sum(z) for z in zip(a, metadata_sum(tree_values[a[0]:]))],
+        partial(metadata_sum_folder, tree_values=tree_values),
         range(children_count),
         (2, 0)
     )
@@ -28,24 +28,38 @@ def metadata_sum(tree_values):
     return node_end, total
 
 
+def metadata_sum_folder(a, b, tree_values):
+    position, total = a
+    length, value = metadata_sum(tree_values[position:])
+    return position + length, total + value
+
+
 # Part Two
 
 
 def node_value(tree_values):
     children_count, metadata_count = tree_values[:2]
-    position = 2
-    children_values = []
-    for index in range(children_count):
-        length, value = node_value(tree_values[position:])
-        position += length
-        children_values.append(value)
+    position, children_values = reduce(
+        partial(node_value_folder, tree_values=tree_values),
+        range(children_count),
+        (2, [])
+    )
     node_end = position + metadata_count
     metadata = tree_values[position:node_end]
     if children_values:
-        total = sum(metadata.count(i + 1) * value for i, value in enumerate(children_values))
+        total = sum(
+            metadata.count(i + 1) * value
+            for i, value in enumerate(children_values)
+        )
     else:
         total = sum(metadata)
     return node_end, total
+
+
+def node_value_folder(a, b, tree_values):
+    position, children_values = a
+    length, value = node_value(tree_values[position:])
+    return position + length, children_values + [value]
 
 
 if __name__ == '__main__':
