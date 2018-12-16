@@ -5,6 +5,7 @@ import sys
 
 def main():
     input_lines = digest_input()
+    # Part One
     cave = Cave(input_lines)
     if TESTING:
         cave.show()
@@ -12,6 +13,22 @@ def main():
         cave.round()
         if TESTING:
             cave.show()
+    print(cave.outcome())
+    # Part Two
+    elf_power = 4
+    elf_victory = False
+    while not elf_victory:
+        try:
+            cave = Cave(input_lines, elf_power=elf_power, reset=True)
+            while not cave.is_over():
+                cave.round()
+                if TESTING:
+                    cave.show()
+            elf_victory = True
+        except ElfDeathError as ede:
+            if TESTING:
+                print(ede)
+            elf_power += 1
     print(cave.outcome())
 
 
@@ -106,6 +123,10 @@ class Elf(Combatant):
 
     enemy = 'Goblin'
 
+    def __init__(self, *args, power=3, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.power = power
+
 
 class Goblin(Combatant):
 
@@ -142,9 +163,10 @@ class Path(object):
 
 class Cave(object):
 
-    def __init__(self, input_lines):
+    def __init__(self, input_lines, elf_power=3, reset=False):
         self.map_ = []
         goblins, elves = [], []
+        self.elf_power = elf_power
         for y, line in enumerate(input_lines):
             new_row = []
             self.map_.append(new_row)
@@ -154,7 +176,7 @@ class Cave(object):
                 elif mark == '.':
                     new_row.append(Feature.open_)
                 elif mark == 'E':
-                    elves.append(Elf((y, x), self))
+                    elves.append(Elf((y, x), self, power=self.elf_power))
                     new_row.append(elves[-1])
                 elif mark == 'G':
                     goblins.append(Goblin((y, x), self))
@@ -163,6 +185,8 @@ class Cave(object):
                     raise ValueError(f'Did not recognize map marking <{mark}>.')
         self.goblins = goblins
         self.elves = elves
+        self.elf_count = len(elves)
+        self.reset = reset
         self.rounds = 0
 
     def show(self):
@@ -194,13 +218,17 @@ class Cave(object):
         combatants = sorted(self.goblins + self.elves, key=lambda c: c.loc)
         for combatant in combatants:
             if combatant.hp > 0:
+                if not self.goblins or not self.elves:
+                    return
                 combatant.take_turn()
+                self.cleanup()
         self.rounds += 1
-        self.cleanup()
 
     def cleanup(self):
         self.elves = [elf for elf in self.elves if elf.hp > 0]
         self.goblins = [goblin for goblin in self.goblins if goblin.hp > 0]
+        if self.reset and len(self.elves) < self.elf_count:
+            raise ElfDeathError(f'Lost elf after {self.rounds} full rounds with power {self.elf_power}')
 
     def is_over(self):
         return not any(g.hp for g in self.goblins) or not any(e.hp for e in self.elves)
@@ -208,6 +236,11 @@ class Cave(object):
     def outcome(self):
         hp = sum(g.hp for g in self.goblins) + sum(e.hp for e in self.elves)
         return hp * self.rounds
+
+
+class ElfDeathError(Exception):
+
+    pass
 
 
 TESTING = 'test' in sys.argv
