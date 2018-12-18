@@ -15,13 +15,6 @@ readLine s = if head s == '+'
 addLines :: [String] -> Integer
 addLines ss = sum $ map readLine $ ss
 
-addToFive :: Integer -> Integer -> [Integer] -> Integer
-addToFive count total numbers = if total == 5
-  then count
-  else if length numbers > 0
-    then addToFive (count + 1) (head numbers + total) (tail numbers)
-    else -1
-
 f :: Ord a => a -> (Set a) -> (Either a (Set a))
 f x xs
   | member x xs = Left x
