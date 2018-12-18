@@ -4,7 +4,9 @@ import System.Environment
 main :: IO ()
 main = do
   input <- readFile "input.txt"
+  -- Part One
   putStrLn $ show $ addLines $ lines input
+  -- Part Two
   putStrLn $ show $ helperUpdateTotals empty 0 input
 
 readLine :: String -> Integer
