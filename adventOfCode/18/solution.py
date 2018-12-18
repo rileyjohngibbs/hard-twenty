@@ -4,8 +4,28 @@ import sys
 
 def main():
     map_ = np.array(digest_input())
+    # Part One
     for _ in range(10):
         map_ = iterate(map_)
+    wooded = (map_ == 1).nonzero()[0].size
+    yards = (map_ == 2).nonzero()[0].size
+    print(wooded * yards)
+    # Part Two
+    map_ = np.array(digest_input())
+    t = 0
+    seen_states = {}
+    end = 1_000_000_000
+    while t < end:
+        key = keyify(map_)
+        if key not in seen_states:
+            seen_states[key] = t
+            map_ = iterate(map_)
+            t += 1
+        else:
+            interval = t - seen_states[key]
+            t = end - ((end - t) % interval)
+            map_ = iterate(map_)
+            t += 1
     wooded = (map_ == 1).nonzero()[0].size
     yards = (map_ == 2).nonzero()[0].size
     print(wooded * yards)
@@ -66,6 +86,10 @@ def acres_around(y, x, map_):
         if 0 <= x < xlen and 0 <= y < ylen
     ]
     return map_[tuple(zip(*inbounds))]
+
+
+def keyify(map_):
+    return tuple(tuple(row) for row in map_)
 
 
 TESTING = 'test' in sys.argv
