@@ -21,9 +21,10 @@ checkCache x xs
   | otherwise = Right (insert x xs)
 
 updateTotals :: (Either Integer (Set Integer)) -> Integer -> [Integer] -> [Integer] -> Integer
-updateTotals (Right ts) t (n:ns) orig = updateTotals (checkCache (t + n) ts) (t + n) ns orig
-updateTotals (Right ts) t ns orig = updateTotals (Right ts) t orig orig
-updateTotals (Left dup) t ns orig = dup
+updateTotals (Right totals) total (n:ns) orig = updateTotals (checkCache newTotal totals) newTotal ns orig
+  where newTotal = total + n
+updateTotals (Right totals) total ns orig = updateTotals (Right totals) total orig orig
+updateTotals (Left dup) total ns orig = dup
 
 helperUpdateTotals :: (Set Integer) -> Integer -> String -> Integer
 helperUpdateTotals a b c = updateTotals (Right a) b d d
