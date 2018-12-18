@@ -5,7 +5,7 @@ main :: IO ()
 main = do
   input <- readFile "input.txt"
   putStrLn $ show $ addLines $ lines input
-  putStrLn $ show $ helperg empty 0 input
+  putStrLn $ show $ helperUpdateTotals empty 0 input
 
 readLine :: String -> Integer
 readLine s = if head s == '+'
@@ -15,16 +15,16 @@ readLine s = if head s == '+'
 addLines :: [String] -> Integer
 addLines ss = sum $ map readLine $ ss
 
-f :: Ord a => a -> (Set a) -> (Either a (Set a))
-f x xs
+checkCache :: Ord a => a -> (Set a) -> (Either a (Set a))
+checkCache x xs
   | member x xs = Left x
   | otherwise = Right (insert x xs)
 
-g :: (Either Integer (Set Integer)) -> Integer -> [Integer] -> [Integer] -> Integer
-g (Right ts) t (n:ns) orig = g (f (t + n) ts) (t + n) ns orig
-g (Right ts) t ns orig = g (Right ts) t orig orig
-g (Left dup) t ns orig = dup
+updateTotals :: (Either Integer (Set Integer)) -> Integer -> [Integer] -> [Integer] -> Integer
+updateTotals (Right ts) t (n:ns) orig = updateTotals (checkCache (t + n) ts) (t + n) ns orig
+updateTotals (Right ts) t ns orig = updateTotals (Right ts) t orig orig
+updateTotals (Left dup) t ns orig = dup
 
-helperg :: (Set Integer) -> Integer -> String -> Integer
-helperg a b c = g (Right a) b d d
+helperUpdateTotals :: (Set Integer) -> Integer -> String -> Integer
+helperUpdateTotals a b c = updateTotals (Right a) b d d
   where d = map readLine $ lines c
