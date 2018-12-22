@@ -54,3 +54,4 @@ tossDiff s (Just ((a:as):(b:bs):ss)) = if a == b
   then tossDiff (s ++ [a]) (Just [as, bs])
   else tossDiff s (Just [as, bs])
 tossDiff s (Just (as:bs:ss)) = s
+tossDiff s _ = s
