@@ -8,6 +8,11 @@ def main():
     fac.add_route(route_string)
     if TESTING:
         fac.show()
+    fac.set_distances()
+    # Part One
+    print(fac.max_distance())
+    # Part Two
+    print(len([room for room in fac.all_rooms if room.distance >= 1000]))
 
 
 def digest_input():
@@ -95,6 +100,29 @@ class Facility(dict):
         to_x, to_y = self._new_coords(room, direction)
         return self[to_x][to_y]
 
+    def set_distances(self, start=None):
+        _start = start or self[0][0]
+        current_rooms = set([_start])
+        _start.distance = 0
+        while current_rooms:
+            room = current_rooms.pop()
+            distance = room.distance + 1
+            new_rooms = [self.use_door(room, d) for d in room.doors]
+            for new_room in new_rooms:
+                if distance < new_room.distance:
+                    new_room.distance = distance
+                    current_rooms.add(new_room)
+
+    def max_distance(self):
+        return self.farthest_room().distance
+
+    @property
+    def all_rooms(self):
+        return reduce(lambda a, b: a + list(b.values()), self.values(), [])
+
+    def farthest_room(self):
+        return max(self.all_rooms, key=lambda r: r.distance)
+
 
 def min_max(iterable, start=(0, 0)):
     def reducer(m, x):
@@ -108,6 +136,7 @@ class Room(object):
     def __init__(self, x, y):
         self.x = x
         self.y = y
+        self.distance = float('inf')
         self._doors = {k: False for k in ['N', 'E', 'S', 'W']}
 
     @property
