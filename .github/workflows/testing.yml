@@ -1,0 +1,17 @@
+name: Testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "What's your `name`, friend?"
+        required: true
+
+jobs:
+  do-stuff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Doing stuff"
+        run: echo "Getting things together..."
+      - name: "Saying hello"
+        run: echo "Hello ${{ inputs.name }}!"
