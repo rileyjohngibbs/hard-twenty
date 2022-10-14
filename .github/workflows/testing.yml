@@ -15,3 +15,10 @@ jobs:
         run: echo "Getting things together..."
       - name: "Saying hello"
         run: echo "Hello ${{ inputs.name }}!"
+  more-stuff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Draft stuff"
+        run: |
+          echo "We're considering adding this as a step."
+          ls -al
