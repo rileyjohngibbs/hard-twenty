@@ -5,7 +5,8 @@ on:
     inputs:
       name:
         description: "What's your `name`, friend?"
-        required: true
+        required: false
+        default: Riley
 
 jobs:
   do-stuff:
