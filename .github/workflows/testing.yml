@@ -15,3 +15,19 @@ jobs:
         run: echo "Getting things together..."
       - name: "Saying hello"
         run: echo "Hello ${{ inputs.name }}!"
+      - name: "Checking nickname riley"
+        run: |
+          if [ $MY_NICKNAME -eq riley ]
+          then
+            echo "that's not right"
+          fi
+        env:
+          MY_NICKNAME: ${{ secrets.MY_NICKNAME }}
+      - name: "Checking nickname pook"
+        run: |
+          if [ $MY_NICKNAME -eq pook ]
+          then
+            echo "that's right"
+          fi
+        env:
+          MY_NICKNAME: ${{ secrets.MY_NICKNAME }}
